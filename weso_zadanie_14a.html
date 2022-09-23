@@ -1,0 +1,26 @@
+<html>
+	<body>
+		<div style="color:red;font-size:50px;">
+			<script language="JavaScript">
+				var c_wes=prompt("podaj c=","");
+				var b_wes=prompt("podaj b=","");
+				var sinalfa;
+				var cosalfa;
+				var tgalfa;
+				var ctgalfa;
+				var a;
+				var c=parseFloat(c_wes);
+				var b=parseFloat(b_wes);
+				a=Math.sqrt((Math.pow(c,2))-(Math.pow(b,2)));
+				sinalfa=a/c;
+				cosalfa=b/c;
+				tgalfa=a/b;
+				ctgalfa=b/a;
+				document.write("sin(alfa)="+a+" / "+c+" = "+sinalfa.toFixed(2)+"<br>");
+				document.write("cos(alfa)="+b+" / "+c+" = "+cosalfa.toFixed(2)+"<br>");
+				document.write("tg(alfa)="+a+" / "+b+" = "+tgalfa.toFixed(2)+"<br>");
+				document.write("ctg(alfa)="+b+" / "+a+" = "+ctgalfa.toFixed(2)+"<br>");
+			</script>
+		</div>
+	</body>
+</html>
