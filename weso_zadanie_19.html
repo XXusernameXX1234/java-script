@@ -1,23 +1,50 @@
 <html>
-	<body>
-		<div style="color:blue;font-size:50px;">
-			 <script language="JavaScript">
-				var a_dana_wes=prompt("a=","");
-                var b_dana_wes=prompt("b=","");
-				var a=parseFloat(a_dana_wes);
-                var b=parseFloat(b_dana_wes);
-
-                function pole_wesolowski(a,b){
-                    return a*b;
-                }
-                function obwod_wesolowski(a,b){
-                    return (2*a)+(2*b);
-                }
-
-				document.write("pole= "+pole_wesolowski(a,b)+"<br>");
-                document.write("obwód= "+obwod_wesolowski(a,b)+"<br>");
-                
-			 </script>
-		</div>
-	</body>
+<head>
+<title>
+Przykład obliczenia V i Pc walca
+</title>
+<script language="JavaScript">
+function V(r,h)
+{
+r_liczba=parseFloat(r)
+h_liczba=parseFloat(h)
+V_wynik=r_liczba*r_liczba
+document.getElementsByName('obj')[0].value=V_wynik.toFixed(2); /* na dokument */
+alert("V="+V_wynik.toFixed(2)+" cm^3"); /*do okna Alert */
+pokaz1.innerHTML="pole="+V_wynik.toFixed(2)+" cm^2"+"<br>"; /* do tabeli */
+}
+function Pc(r,h)
+{
+r_liczba=parseFloat(r)
+h_liczba=parseFloat(h)
+19
+Pc_wynik=h_liczba*r_liczba
+document.getElementsByName('pole')[0].value=Pc_wynik.toFixed(2);
+alert("Pc="+Pc_wynik.toFixed(2)+" cm^2");
+pokaz2.innerHTML="obw="+Pc_wynik.toFixed(2)+"cm";
+}
+</script>
+</head>
+<body>
+Pobliczanie V i Pc walca
+<br> <br>
+<form name="formularz" action="..." onsubmit="V(this.promien.value,this.wysokosc.value);
+Pc(this.promien.value,this.wysokosc.value);return false">
+Podaj r=
+<input size="6" name="promien">
+Podaj h=
+<input size="6" name="wysokosc">
+<br> <br>
+<input TYPE="submit" Value="oblicz" >
+<br> <br>
+pole=
+<input size="6" name="obj">
+obw=
+<input size="6" name="pole">
+</form>
+<table>
+<tr id="pokaz1"></tr>
+<tr id="pokaz2"></tr>
+</table>
+</body>
 </html>
