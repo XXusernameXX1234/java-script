@@ -1,0 +1,30 @@
+<textarea style="width:1000px;height:1000px;">
+<html>
+	<head>
+		<script type="text/javascript">
+			var wiezowiec_pokaz_wesolowski = 
+			{
+				nazwisko: 'Wesołowski',
+				imie: 'Mateusz',
+				zawod: 'programista',
+				pokaz: function ()
+				{
+					document.write(this.nazwisko + ' ' + this.imie)
+				}
+			}
+			wiezowiec_pokaz_wesolowski.pokaz();
+			wiezowiec_pokaz_wesolowski.wiek=19;
+			wiezowiec_pokaz_wesolowski.wypisz=
+			function() 
+			{
+				alert('Wiek: ' + this.wiek + 'lat')
+			}
+			wiezowiec_pokaz_wesolowski.wypisz();
+	</script>
+	</head>
+	<body>
+		<br>
+		programowanie obiektowe
+	</body>
+</html>
+</textarea>
