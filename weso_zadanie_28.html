@@ -22,6 +22,35 @@
 			document.write("dostęp do właściwości"+"<br>");
 			// poniżej dostęp do pól osoby1
 			document.write("klient pierwszy"+" "+osoba1.nazwisko+" "+osoba1.imie+" "+osoba1.zawod);
+			
+			
+			
+			
+			
+			
+			
+			
+			function wiezowiec_pokaz_wesolowski(nazwa_obiektu_k,nazwa_obiektu_k,ilosc_mieszkan_k)//początek konstruktora
+			{
+				this.nazwa_obiektu=nazwa_obiektu_k;
+				this.nazwa_obiektu=nazwa_obiektu_k;
+				this.ilosc_mieszkan=ilosc_mieszkan_k;
+			}//koniec konstruktora
+			
+			wiezowiec_pokaz_wesolowski.prototype.wypisz = function () //definicja metody
+			{
+				alert(this.nazwa_obiektu + ' ' + this.nazwa+ ' ' + this.ilosc_mieszkan);
+			};
+			
+			var wiezowiec = new wiezowiec_pokaz_wesolowski("wiezowiec", "mariott", "300"); // nowy obiekt osoba1
+			
+			wiezowiec.wypisz();
+			document.write("dostęp do właściwości"+"<br>");
+			document.write("obiekt"+" "+wiezowiec.nazwa_obiektu+" "+wiezowiec.nazwa_obiektu+" "+wiezowiec.ilosc_mieszkan);
+			
+			
+			
+			
 		</script>
 	</head>
 	<body>
