@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<script type="text/javascript">
-			var wiezowiec_pokaz_wesolowski = 
+			var czlowiek = 
 			{
 				nazwisko: 'Wesołowski',
 				imie: 'Mateusz',
@@ -11,14 +11,37 @@
 					document.write(this.nazwisko + ' ' + this.imie)
 				}
 			}
-			wiezowiec_pokaz_wesolowski.pokaz();
-			wiezowiec_pokaz_wesolowski.wiek=16;
-			wiezowiec_pokaz_wesolowski.wypisz=
+			czlowiek.pokaz();
+			czlowiek.wiek=16;
+			czlowiek.wypisz=
 			function() 
 			{
 				alert('Wiek: ' + this.wiek + 'lat')
 			}
-			wiezowiec_pokaz_wesolowski.wypisz();
+			czlowiek.wypisz();
+			
+			
+			
+			
+			var wiezowiec_pokaz_wesolowski =
+			    {
+				administrator_budynku_nazw: 'Wiśniewski',
+				administrator_budynku_imie: 'kartofel',
+				zawod_w: 'administrator wiezowca',
+				pokaz_w: function ()
+				{
+					document.write('<br>'+this.administrator_budynku_nazw + ' ' + this.administrator_budynku_imie+' '+this.zawod_w)
+				}   
+			    }
+			wiezowiec_pokaz_wesolowski.pokaz_w();
+			wiezowiec_pokaz_wesolowski.ilosc_mieszkan=300;
+			wiezowiec_pokaz_wesolowski.wypisz_w=
+			function() 
+			{
+				alert('ilość mieszkań: ' + this.ilosc_mieszkan)
+			}
+			wiezowiec_pokaz_wesolowski.wypisz_w();
+			
 	</script>
 	</head>
 	<body>
