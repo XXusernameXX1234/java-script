@@ -1,17 +1,23 @@
 <html>
 	<body>
-		<div style="color:red;font-size:50px;">
+		<div style="font-size:50px;">
 			<script language="JavaScript">
-				var x=prompt("jaki kolor chcesz wybrać?=","");
-				var x=parseFloat(x);
-				x=x.toLowerCase;
-				
-				if(x=1 || x="czerwony")
-				{
-					document.write("<p>CZERWONY</p>");
-				}
+				var a=prompt("jaki kolor chcesz wybrać?=","");
 
+				if(a==1 || a.toLowerCase()=="czerwony")
+				{
+					document.write("<font color=red >wczytałeś czerwony</font><br>");
+				}
+				else if(a==2 || a.toLowerCase()=="niebieski")
+				{
+					document.write("<font color=blue>wczytałeś niebieski</font><br>");
+				}
+				else
+				{
+					document.write("<p>nie poprawnie podane dane</p>");
+				}
 			</script>
+			<input type="button" value="sprawdź"
 		</div>
 	</body>
 </html>
