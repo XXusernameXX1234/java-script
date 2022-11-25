@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>73</title>
+	</head>
+	<body>
+		<div>
+			<script>
+				var nazwisko=prompt("podaj nazwisko","");
+				var imie=prompt("podaj imie","");
+				var a_wes=(nazwisko.length % 4)+5;
+				var b_wes=(imie.length % 6)+20;
+				var i_wes;
+				var x_wes;
+				var j_wes;
+				
+				var spacja="&nbsp;&nbsp;"
+				for(j_wes=2;j_wes<=(b_wes-2);j_wes++)
+				{
+					spacja=spacja+"&nbsp;&nbsp;";
+				}
+				
+				for(i_wes=1;i_wes<=b_wes;i_wes++)
+				{
+					document.write("*");
+				}
+				
+				document.write("<br>")
+				
+				for(x_wes=1;x_wes<=(a_wes-2);x_wes++)
+				{
+					document.write("*"+spacja+"*<br>")
+				}
+				for(i_wes=1;i_wes<=b_wes;i_wes++)
+				{
+					document.write("*");
+				}
+			</script>
+		</div>
+	</body>
+</html>
