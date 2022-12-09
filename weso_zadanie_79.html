@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		 <meta charset="utf-8">
+		 <title> kratowe </title>
+		 <script language="JavaScript">
+		 var R=prompt("podaj R","");
+		 var R_wes=parseFloat(R);
+		 var licznik=parseFloat(0);
+		 var x;
+		 var y;
+
+		 for (var i=-Math.round(R_wes)-1; i<=R_wes+1; i++)
+		 {
+			 for ( var k=-Math.round(R_wes)-1; k<=R_wes+1; k++)
+			 {
+				var d=Math.sqrt(i*i+k*k)
+				if(d<=R_wes)
+				{
+					licznik++;
+				}
+			 }
+		 }
+		 document.write("<br>");
+		 document.write("N="+licznik);
+	 </script>
+	</head>
+	<body>
+		<table border="1">
+			<tr>
+				<td>Promień koła R</td>
+				<td>Liczba punktów kratowych N(R)</td>
+			</tr>
+			<tr>
+				<td>2,01</td>
+				<td>13</td>
+			</tr>
+			<tr>
+				<td>4,50</td>
+				<td>69</td>
+			</tr>
+			<tr>
+				<td>100+numer_w_dzienniku</td>
+				<td>54693</td>
+			</tr>
+			<tr>
+				<td>1000+numer_w_dzienniku</td>
+				<td>3345773</td>
+			</tr>
+		</table>
+	</body>
+</html>
