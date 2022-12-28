@@ -1,16 +1,21 @@
-<!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="UTF-8"/>
+	</head>
 	<body>
-		<div style="font-size:50px;">
+		<div>
 			<script language="JavaScript">
 				var a_wes=prompt("podaj liczbę","");
-                var a=parseFloat(a_wes);
-                if(a%2==0){
-                    document.write("<font size=3>liczba jest parzysta</font>");
-                }
-                else{
-                    document.write("<font size=5>liczba jest nieparzysta</font>");
-                }
+				var a=parseFloat(a_wes);
+				
+				if(a%2==0)
+				{
+					document.write("<font color=red size=3>parzysta</font>");
+				}
+				else
+				{
+					document.write("<font color=silver size=5>nie parzysta</font>");
+				}
 			</script>
 		</div>
 	</body>
