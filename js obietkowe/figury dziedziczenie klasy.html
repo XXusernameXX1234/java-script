@@ -1,0 +1,110 @@
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<fieldset style="width:270px;">
+			<legend>Wybierz</legend>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="wybor" id="prostokat_wybor">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="wybor" id="prostopadl_wybor">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="wybor" id="ostroslup_wybor"><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prostokąt&nbsp;&nbsp;&nbsp;&nbsp;Prostopadłościan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ostrosłup
+		</fieldset>
+		<br>
+		bok 1<input type="text" id="BOK1"><br>
+		bok 2<input type="text" id="BOK2"><br>
+		pole <input type="text" id="POLE"><br>
+		objetosc <input type="text" id="OBJET"><br>
+		wysokosc <input type="text" id="WYS"><br>
+		<input type="button" value="oblicz" onclick=""><br>
+		<p id="wynik"></p>
+		
+		
+		<script>
+			class Prostokat{
+				#A=0;
+				#B=0;
+				
+				constructor(a,b){
+					this.#A=a;
+					this.#B=b;
+				}
+				
+				obliczPole(){
+					return this.BokA*this.BokB;
+				}
+				
+			}
+			
+			//////////////////////KLASA////////////////////////
+			
+			class Prostopadloscian extends Prostokat{
+				#H=0;
+				
+				constructor(a,b,h){
+					super(a,b);
+					this.#H=h;
+				}
+				
+				obliczPole(){
+					return 2*this.BokA*this.BokB+2*this.BokA*this.Wys+2*this.BokB*this.Wys;
+				}
+				obliczObjetosc(){
+					return super.obliczPole()*this.Wys;
+				}
+			}
+			
+			//////////////////////KLASA////////////////////////
+			
+			class Ostroslup extends Prostokat{
+				#H=0;
+				get Wys(){
+					return this.#H;
+				}
+				set Wys(value){
+					this.#H=value
+				}
+				
+				obliczPole(){
+					return this.BokA*this.BokB+2*(this.BokA*this.Wys/2)+2*(this.BokB*this.Wys/2);
+				}
+				obliczObjetosc(){
+					return this.BokA*this.BokB*this.Wys*(1/3);
+				}
+			}
+				
+			////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+			prostokat_wybor.addEventListener("change", function(){
+				WYS.disabled=true;
+				OBJET.disabled=true;
+			})
+			prostopadl_wybor.addEventListener("change", function(){
+				WYS.disabled=false;
+				OBJET.disabled=false;
+			})
+			ostroslup_wybor.addEventListener("change", function(){
+				WYS.disabled=false;
+				OBJET.disabled=false;
+			})
+			
+			const oblicz=()=>{
+				if(prostokat_wybor.checked){
+					let pr = new Prostokat(parseFloat(document.getElementById("BOK1")),parseFloat(document.getElementById("BOK2")));
+					pr.BokA=parseFloat(document.getElementById("BOK1").value);
+					pr.BokB=parseFloat(document.getElementById("BOK2").value);
+					poleP.value=pr.obliczPole();
+					wynik.innerHTML=poleP.value;
+				}
+				if(prostopadl_wybor.checked){
+					let prost = new Prostopadloscian(parseFloat(document.getElementById("BOK1")),parseFloat(document.getElementById("BOK2")),parseFloat(document.getElementById("WYS")))
+				}
+		}
+		</script>
+		
+		
+	</body>
+</html>

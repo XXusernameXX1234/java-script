@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<script>
+			class Ohm{
+				#dblNatezenie;
+				#dblNapiecie;
+				#dblRezystancja;
+				
+				get Natezenie(){
+					return this.#dblNatezenie;
+				}
+				set Natezenie(value){
+					this.#dblNatezenie=value;
+				}
+				
+				get Napiecie(){
+					return this.#dblNapiecie;
+				}
+				set Napiecie(value){
+					this.#dblNapiecie=value;
+				}
+				
+				get Rezystancja(){
+					return this.#dblRezystancja;
+				}
+				set Rezystancja(value){
+					this.#dblRezystancja=value;
+				}
+				
+				// I natezenie
+				// U napiecie
+				// R rezystancja
+				
+				obliczNatezenie()
+				{
+					return this.Napiecie/this.Rezystancja;
+				}
+				obliczNapiecie()
+				{
+					return this.Natezenie*this.Rezystancja;
+				}
+				obliczRezystancja()
+				{
+					return this.Napiecie/this.Natezenie;
+				}
+			}
+			RBnatez=document.getElementById("RBnatez");
+			RBnatez=document.getElementById("RBnap");
+			RBnatez=document.getElementById("RBrezy");
+			
+			RBnatez.addEventListener("change",function(){
+				txtNatez.diabled=true;
+				txtNap.disabled=false;
+				txtRezy.disabled=false;
+			})
+			RBnap.addEventListener("change",function(){
+				txtNatez.diabled=false;
+				txtNap.disabled=true;
+				txtRezy.disabled=false;
+			})
+			RBrezy.addEventListener("change",function(){
+				txtNatez.diabled=false;
+				txtNap.disabled=false;
+				txtRezy.disabled=true;
+			})
+			
+			const oblicz=()=>{
+				let ohm = new Ohm();
+				if(RBnatez.checked){
+					ohm.Napiecie=parseFloat(txtNap.value);
+					ohm.Rezystancja=parseFloat(txtRezy.value);
+					wynik.innerHTML=ohm.obliczNatezenie;
+				}
+				if(RBnap.checked){
+					ohm.Natezenie=parseFloat(txtNatez.value);
+					ohm.Rezystancja=parseFloat(txtRezy.value);
+					wynik.innerHTML=ohm.obliczNapiecie;
+				}
+				if(RBrezy.checked){
+					ohm.Napiecie=parseFloat(txtNap.value);
+					ohm.Natezenie=parseFloat(txtNatez.value);
+					wynik.innerHTML=ohm.obliczRezystancja;
+				}
+		</script>
+	</head>
+	<body>
+		<fieldset style="width:270px;">
+			<legend>Oblicz</legend>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="wybor" id="RBnatez">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="wybor" id="RBnap">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="wybor" id="RBrezy"><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Natezenie&nbsp;&nbsp;&nbsp;&nbsp;napiecie&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rezystancja
+		</fieldset>
+		<br>
+		Natezenie &nbsp;&nbsp;&nbsp;<input type="text" id="txtNatez"><br>
+		Napiecie &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="txtNap"><br>
+		Rezystancja <input type="text" id="txtRezy"><br>
+		<input type="button" value="oblicz" onclick="oblicz()"><br>
+		<p id="wynik"></p>
+	</body>
+</html>

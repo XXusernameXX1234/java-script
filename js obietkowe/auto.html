@@ -1,0 +1,126 @@
+<html>
+	<head>
+		<style>
+			#txtmodel, #txtcena, #txtkurs, #txtalarm, #txtklimatyzacja, #txtradioodtwarzacz, #txtilosclat{
+				width:100px;
+			}
+			p{
+				font-weight:bolder;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset style="width:585px;">
+			<legend>Wybierz wariant zakupu</legend>
+			<input type="radio" name="name" id="RBcena"> Cena auta &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="name" id="RBcenadod"> cena auta z dodatkami&nbsp;&nbsp;&nbsp;&nbsp
+			<input type="radio" name="name" id="RBcenadodubezp"> cena auta z dodatkami i ubezpieczeniem
+		</fieldset>
+		
+		<!------------------------------------------------------------>
+		
+		<fieldset style="width:200px;display:inline-block;">
+			<legend>Nowe Auto</legend>
+			Model Auta &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="txtmodel" >
+			Cena (EURO) <input type="text" id="txtcena">
+			Kurs Euro &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="txtkurs">
+		</fieldset>
+		
+		<!------------------------------->
+		
+		<fieldset style="width:230px;display:inline-block;" id="fsDodatki">
+			<legend>Dodatki</legend>
+			Alarm &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="txtalarm" ><br>
+			Klimatyzacja &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="txtklimatyzacja"><br>
+			Radioodtwarzacz <input type="text" id="txtradioodtwarzacz">
+		</fieldset>
+		
+		<!------------------------------->
+		
+		<fieldset style="width:200px;display:inline-block;" id="fsUbezpieczenie">
+			<legend>Ubezpieczenie</legend>
+			<input type="checkbox" id="RBpierwszeauto" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pierwsze Auto<br>
+			ilosc lat<br>
+			<input type="text" id="txtilosclat">
+		</fieldset>
+		
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p id="modelWynik"></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="oblicz" onclick="oblicz()"><br>
+		
+		
+		<script>
+			
+			
+			class NoweAuto{
+				constructor(model, cena, kurs){
+					this.model=model;
+					this.cena=cena;
+					this.kurs=kurs;
+				}
+				
+				obliczCene(){
+					return this.cena*this.kurs;
+				}
+			}
+			
+			class DodatkiAuto extends NoweAuto{
+				constructor(model, cena, kurs, alarm, klima, radioodt){
+					super(model, cena, kurs);
+					this.alarm=alarm;
+					this.klima=klima;
+					this.radioodt=radioodt;
+				}
+				obliczCene(){
+					return this.cena*this.kurs+this.alarm+this.klima+this.radioodt;
+				}
+			}
+			
+			class UbezpieczenieAuto extends DodatkiAuto{
+				constructor(model, cena, kurs, alarm, klima, radioodt, pierwsze, ilosclat){
+					super(model, cena, kurs, alarm, klima, radioodt);
+					this.ilosclat=ilosclat;
+				}
+				obliczCene(){
+					if(RBpierwszeauto.checked){
+						return super.obliczCene();
+					}
+					else{
+						return super.obliczCene()-(this.ilosclat*0.01*super.obliczCene());
+					}
+				}
+			}
+			
+			RBcena.addEventListener("change", function(){
+				fsDodatki.style.visibility="hidden";
+				fsUbezpieczenie.style.visibility="hidden";
+			})
+			RBcenadod.addEventListener("change", function(){
+				fsDodatki.style.visibility="visible";
+				fsUbezpieczenie.style.visibility="hidden";
+			})
+			RBcenadodubezp.addEventListener("change", function(){
+				fsDodatki.style.visibility="visible";
+				fsUbezpieczenie.style.visibility="visible";
+			})
+			
+			const oblicz=()=>{
+				if(RBcena.checked){
+					let auto = new NoweAuto(txtmodel.value, parseFloat(txtcena.value), parseFloat(txtkurs.value));
+					modelWynik.innerHTML="'"+auto.model+"' cena auta: "+auto.obliczCene();
+				}
+				if(RBcenadod.checked){
+					let auto = new DodatkiAuto(txtmodel.value, parseFloat(txtcena.value), parseFloat(txtkurs.value), parseFloat(txtalarm.value), parseFloat(txtklimatyzacja.value), parseFloat(txtradioodtwarzacz.value));
+					modelWynik.innerHTML="'"+auto.model+"' cena auta: "+auto.obliczCene();
+				}
+				if(RBcenadodubezp.checked){
+					let auto = new UbezpieczenieAuto(txtmodel.value, parseFloat(txtcena.value), parseFloat(txtkurs.value), parseFloat(txtalarm.value), parseFloat(txtklimatyzacja.value), parseFloat(txtradioodtwarzacz.value), RBpierwszeauto.value, parseFloat(txtilosclat.value));
+					modelWynik.innerHTML="'"+auto.model+"' cena auta: "+auto.obliczCene();
+				}
+			}
+			
+		</script>
+		
+		
+	</body>
+</html>

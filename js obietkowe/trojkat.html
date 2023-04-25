@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>tytuł</title>
+		<script>
+			const Trojkat ={
+				bokA:0,
+				bokB:0,
+				bokC:0,
+				
+				pole(){
+					if((this.bokA+this.bokB>this.bokC) && (this.bokA+this.bokC>this.bokB) && (this.bokB+this.bokC>this.bokA)){
+						const p=(this.bokA+this.bokB+this.bokC)/2;
+						return Math.sqrt(p*(p-this.bokA)*(p-this.bokB)*(p-this.bokC));
+					}
+					else{
+						return "Z tych boków nie da się zbudować trójkąta!";
+					}
+				}
+			}
+			
+			const oblicz=()=>{
+				Trojkat.bokA=parseFloat(document.getElementById("A").value);
+				Trojkat.bokB=parseFloat(document.getElementById("B").value);
+				Trojkat.bokC=parseFloat(document.getElementById("C").value);
+				wyswietl.innerHTML=Trojkat.pole();
+			}
+		</script>
+		<style>
+			#fieldset1{
+				width:270px;
+				height:150px;
+				border-radius:5px;
+				border-width:1px;
+				border-color:black;
+				text-align:center;
+			}
+			#fieldset2{
+				width:270px;
+				height:50px;
+				border-radius:5px;
+				border-width:1px;
+				border-color:black;
+				text-align:center;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="fieldset1">
+			<legend align="left">Podaj długości boków</legend>
+			a:<input type="number" id="A"><br><br>
+			b:<input type="number" id="B"><br><br>
+			c:<input type="number" id="C"><br>
+			<br>
+			<input type="button" value="Sprawdź!" onclick="oblicz()" >
+		</fieldset>
+		
+		<fieldset id="fieldset2">
+			<legend align="left">Pole</legend>
+			<p id="wyswietl"></p>
+		</fieldset>
+	</body>
+</html>

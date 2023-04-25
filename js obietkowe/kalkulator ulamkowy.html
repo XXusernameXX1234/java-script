@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<script>
+			class Ulamek{
+				#intmianownik;
+				#intlicznik;
+				
+				//MIANOWNIK
+				get mianownik(){
+					return this.#intmianownik;
+				}
+				set mianownik(value){
+					if(value==0){
+						alert("Ułamek o takim mianowniku nie istnieje!");
+					}
+					else{
+						this.#intmianownik=value;
+					}
+				}
+				
+				//LICZNIK
+				get licznik(){
+					return this.#intlicznik;
+				}
+				set licznik(value){
+					this.#intlicznik=value;
+				}
+				
+				NWD(a,b){
+					while(a!=b){
+						if(a>b){
+							a=a-b;
+						}
+						else{
+							b=b-a;
+						}
+					}
+					return a;
+				}
+				
+				skroc(){
+					let skracacz=this.NWD(this.licznik, this.mianownik);
+					this.licznik=this.licznik/skracacz;
+					this.mianownik=this.mianownik/skracacz;
+				}
+				
+				NWW(a,b){
+					return (a/this.NWD(a,b)*b);
+				}
+				
+				dodaj(ulamek1,ulamek2){
+					this.mianownik=this.NWW(ulamek1.mianownik, ulamek2.mianownik);
+					this.licznik=this.mianownik/ulamek1.mianownik*ulamek1.licznik+(this.mianownik/ulamek2.mianownik)*ulamek2.licznik;
+					this.skroc();
+				}
+				odejmij(ulamek1,ulamek2){
+					this.mianownik=this.NWW(ulamek1.mianownik, ulamek2.mianownik);
+					this.licznik=this.mianownik/ulamek1.mianownik*ulamek1.licznik-(this.mianownik/ulamek2.mianownik)*ulamek2.licznik;
+					this.skroc();
+				}
+				pomnoz(ulamek1,ulamek2){
+					this.mianownik=ulamek1.mianownik * ulamek2.mianownik;
+					this.licznik=ulamek1.licznik * ulamek2.licznik;
+					this.skroc();
+				}
+				dziel(ulamek1,ulamek2){
+					this.mianownik=ulamek1.mianownik * ulamek2.licznik;
+					this.licznik=ulamek2.mianownik * ulamek1.licznik;
+					this.skroc();
+				}
+				
+				const plus=()=>{
+					ulamek1=new Ulamek();
+					ulamek1.licznik=parseInt(licznik1.value);
+					ulamek1.mianownik=parseInt(mianownik1.value);
+					ulamek2=new Ulamek();
+					ulamek2.licznik=parseInt(licznik2.value);
+					ulamek2.mianownik=parseInt(mianownik2.value);
+					ulamek3=new Ulamek();
+					ulamek3.dodaj(ulamek1,ulamek2);
+					Licznik3.value=ulamek3.licznik;
+					Mianownik3.value=ulamek3.mianownik;
+				}
+			}
+		</script>
+		<style>
+			span{
+				font-size:20px;
+				font-weight:bolder;
+			}
+			#licznik1, #licznik2, #mianownik1, #mianownik2, #u2mian, #wynikmian{
+				width:35px;height:35px;display:inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="licznik1" style="">
+		&nbsp;&nbsp;
+		<input type="text" id="licznik2" style="">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<textarea id="licznik3" style=""></textarea><br>
+		<hr style="width:25px;float:left;display:inline-block;" color="black">&nbsp;&nbsp;<span id="znak">+</span>&nbsp;&nbsp;<hr style="width:25px;display:inline-block;" color="black">&nbsp;&nbsp;&nbsp;&nbsp;<span>=</span>&nbsp;&nbsp;&nbsp;<hr style="width:25px;display:inline-block;" color="black"><br>
+		<input type="text" id="mianownik1" style="">
+		&nbsp;&nbsp;	
+		<input type="text" id="mianownik2" style="">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<textarea id="mianownik3" style=""></textarea>
+		<br><br>
+		<input type="button" value="+" style="border-radius:5px;background-color:lightgrey;border-color:grey;">
+		<input type="button" value="-" style="border-radius:5px;background-color:lightgrey;border-color:grey;"><br>
+		<input type="button" value="*" style="border-radius:5px;background-color:lightgrey;border-color:grey;">
+		<input type="button" value="/" style="border-radius:5px;background-color:lightgrey;border-color:grey;"><br>
+		&nbsp;&nbsp;<input type="button" value="ac" style="border-radius:5px;background-color:lightgrey;border-color:grey;">
+		
+	</body>
+</html>
